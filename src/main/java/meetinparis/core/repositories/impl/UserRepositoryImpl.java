@@ -157,8 +157,7 @@ public class UserRepositoryImpl implements UserRepository {
 
 	@Override
 	public User findUserById(long _id) {
-		// TODO Auto-generated method stub
-		return null;
+		return mongoTemplate.findById(_id, User.class);
 	}
 
 	@Override
