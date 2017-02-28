@@ -1,0 +1,54 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:oxm="http://www.springframework.org/schema/oxm"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd 
+	http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context.xsd 
+	http://www.springframework.org/schema/tx 
+	http://www.springframework.org/schema/tx/spring-tx.xsd 
+	http://www.springframework.org/schema/aop 
+	http://www.springframework.org/schema/aop/spring-aop.xsd 
+	http://www.springframework.org/schema/data/mongo 
+	http://www.springframework.org/schema/data/mongo/spring-mongo-1.0.xsd
+	http://www.springframework.org/schema/util 
+	http://www.springframework.org/schema/util/spring-util.xsd
+	http://www.springframework.org/schema/oxm
+	http://www.springframework.org/schema/oxm/spring-oxm-3.0.xsd">
+
+  <!--mongo:repositories base-package="flatinfo.core.repositories.impl" /-->
+  <context:component-scan base-package="flatinfo.core.services.impl"/>
+  <context:component-scan base-package="flatinfo.core.security"/>
+  <context:component-scan base-package="flatinfo.core.repositories.impl"/>
+  
+
+  
+  <!--   
+  <context:component-scan base-package="flatinfo.core.repositories.*"/>
+  <mongo:repositories base-package="flatinfo.core.repositories.*" />
+  <context:component-scan base-package="flatinfo.core.services.impl"/>
+  <context:component-scan base-package="flatinfo.core.security"/>
+   -->
+	<!-- MongoTemplate for connecting and quering the documents in the database -->
+	<!-- set the mapping converter to be used by the MongoTemplate -->
+	<!-- Factory bean that creates the Mongo instance -->
+	  
+  <bean id="mongo" class="com.mongodb.Mongo">
+    <constructor-arg name="host" value="127.0.0.1" />
+    <constructor-arg name="port" value="27017" />
+  </bean>
+
+  <!-- Define the MongoTemplate which handles connectivity with MongoDB -->
+  <bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate" depends-on="mongo">
+    <constructor-arg name="mongo" ref="mongo"/>
+    <constructor-arg name="databaseName" value="flat"/>
+  </bean>
+  
+  	<!-- one of the properties available; the maximum file size in bytes --> 
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="50000000" />
+	</bean>
+</beans>
