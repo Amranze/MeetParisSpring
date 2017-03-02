@@ -34,6 +34,12 @@ public class UserController {
 		return userRepo.findUserById(_id);
 	}
 	
+	@RequestMapping(value="/findUser/{email}/{password}", method=RequestMethod.GET, produces = "application/json")
+	@ResponseBody
+	public User findUserWithMail(@PathVariable String email, @PathVariable String password){
+		return userRepo.CheckUser(email, password);
+	}
+	
 	@RequestMapping(value="/addUser", method=RequestMethod.POST, consumes = "application/json")
 	@ResponseBody
 	public boolean addUser(@ModelAttribute("user") User user){
@@ -45,7 +51,7 @@ public class UserController {
 	@RequestMapping(value="/updateUser", method=RequestMethod.POST, consumes = "application/json")
 	@ResponseBody
 	public boolean updateUser(@ModelAttribute("user") User user){
-		User updatedUser = userRepo.findUserById(user.get_id());
+		User updatedUser = userRepo.findUserById(user.getId());
 		if(updatedUser != null)
 			return userRepo.save(user) != null ? true : false;
 		return false;

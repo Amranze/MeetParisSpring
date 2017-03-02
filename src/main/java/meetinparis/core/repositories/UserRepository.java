@@ -15,6 +15,8 @@ public interface UserRepository extends MongoRepository<User, String>{
 	@Query
 	public List<User> findAllUsers();
 	@Query
+	public User CheckUser(String email, String password);
+	@Query
 	public User findUserById(@Param(value = "_id") long _id);
 	@Query
 	public User findUserByName(String username);

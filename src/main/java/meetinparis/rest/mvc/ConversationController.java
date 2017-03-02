@@ -58,11 +58,11 @@ public class ConversationController {
 		//List<Conversation> conversations = user.getConversations().parallelStream().;
 	}
 	
-	@RequestMapping(value="/deleteAllConversationWithUser/{_id}", method=RequestMethod.POST)
+	/*@RequestMapping(value="/deleteAllConversationWithUser/{_id}", method=RequestMethod.POST)
 	public void deleteAllConversation(@PathVariable long _id){
 		//Add Map<Conversation, String> in User model
 		User user = userRepo.findUserById(_id);
 		user.setConversations(null);
 		userRepo.save(user);
-	}
+	}*/
 }

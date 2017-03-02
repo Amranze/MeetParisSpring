@@ -3,41 +3,41 @@ package meetinparis.core.models;
 import java.util.List;
 
 public class Conversation {
-	private long _id;
+	private long id;
 	//XXX should I use User or long
-	private long userGetter;
-	private long userSender;
+	private long idBuddy;
+	private long idUser;
 	private List<Message> conversation;
 	
-	public Conversation(long _id, long userGetter, long userSender, List<Message> conversation) {
+	public Conversation(long id, long idBuddy, long idUser, List<Message> conversation) {
 		super();
-		this._id = _id;
-		this.userGetter = userGetter;
-		this.userSender = userSender;
+		this.id = id;
+		this.idBuddy = idBuddy;
+		this.idUser = idUser;
 		this.conversation = conversation;
 	}
 	@Override
 	public String toString() {
-		return "Conversation [_id=" + _id + ", userGetter=" + userGetter + ", userSender=" + userSender
+		return "Conversation [id=" + id + ", idBuddy=" + idBuddy + ", idUser=" + idUser
 				+ ", conversation=" + conversation + "]";
 	}
-	public long get_id() {
-		return _id;
+	public long getId() {
+		return id;
 	}
-	public void set_id(long _id) {
-		this._id = _id;
+	public void setId(long id) {
+		this.id = id;
 	}
-	public long getUserGetter() {
-		return userGetter;
+	public long getIdBuddy() {
+		return idBuddy;
 	}
-	public void setUserGetter(long userGetter) {
-		this.userGetter = userGetter;
+	public void setIdBuddy(long idBuddy) {
+		this.idBuddy = idBuddy;
 	}
-	public long getUserSender() {
-		return userSender;
+	public long getIdUser() {
+		return idUser;
 	}
-	public void setUserSender(long userSender) {
-		this.userSender = userSender;
+	public void setIdUser(long idUser) {
+		this.idUser = idUser;
 	}
 	public List<Message> getConversation() {
 		return conversation;

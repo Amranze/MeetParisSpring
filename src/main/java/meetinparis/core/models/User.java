@@ -7,13 +7,13 @@ import java.util.Map;
 import meetinparis.core.models.Details.Gender;
 
 public class User {
-	private long _id;
+	private long id;
 	private String firstname;
 	private String lastname;
 	private String username;
 	private String mail;
 	private String password;
-	private Date birthdate;
+	private String birthdate;
 	private Gender gender;
 	private int age;
 	private String phone;
@@ -28,8 +28,9 @@ public class User {
 	//If the user doesn't connect from 3 months then set active to false
 	private boolean active;
 	private boolean online;
+	//XXX remove conversations
 	//private List<Conversation> conversations;
-	private Map<Integer, Conversation> conversations;
+	//private Map<Integer, Conversation> conversations;
 	private String profilePicture;
 	private List<String> pictures;
 	private List<Integer> likes;
@@ -41,58 +42,57 @@ public class User {
 	private SocialNetwork socialNetworks;
 	private double actualLocation;
 	
-	public User(long _id, String firstname, String lastname, String username,
-			String mail, String password, Date birthdate, int age, Gender gender,
-			String phone, Details userDetails, String address, int postalCode,String city, 
-			String country, long lastConnection, long createdDate, boolean active, boolean online,
-			Map<Integer, Conversation> conversations, List<String> pictures, String profilePicture,
-			List<Integer> likes, List<Integer> whoSawMe, List<Integer> whoISaw,
-			SocialNetwork socialNetworks) {
+	
+	
+	public User(long id, String firstname, String lastname, String username, String mail, String password,
+			String birthdate, Gender gender, int age, String phone, Details userDetails, String address, int postalCode,
+			String city, String country, long lastConnection, long createdDate, boolean active, boolean online,
+			String profilePicture, List<String> pictures, List<Integer> likes, List<Integer> whoSawMe,
+			List<Integer> whoISaw, SocialNetwork socialNetworks, double actualLocation) {
 		super();
-		this._id = _id;
+		this.id = id;
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.username = username;
 		this.mail = mail;
 		this.password = password;
 		this.birthdate = birthdate;
-		this.age = age;
 		this.gender = gender;
+		this.age = age;
 		this.phone = phone;
 		this.userDetails = userDetails;
 		this.address = address;
 		this.postalCode = postalCode;
 		this.city = city;
 		this.country = country;
-		this.createdDate = createdDate;
 		this.lastConnection = lastConnection;
+		this.createdDate = createdDate;
 		this.active = active;
 		this.online = online;
-		this.conversations = conversations;
-		this.pictures = pictures;
 		this.profilePicture = profilePicture;
+		this.pictures = pictures;
 		this.likes = likes;
 		this.whoSawMe = whoSawMe;
 		this.whoISaw = whoISaw;
 		this.socialNetworks = socialNetworks;
+		this.actualLocation = actualLocation;
 	}
 	@Override
 	public String toString() {
-		return "User [_id=" + _id + ", firstname=" + firstname + ", lastname=" + lastname + ", username=" + username
+		return "User [id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + ", username=" + username
 				+ ", mail=" + mail + ", password=" + password + ", birthdate=" + birthdate + ", age=" + age + ", phone="
 				+ phone + ", address=" + address + ", postalCode=" + postalCode + ", city=" + city + ", country="
 				+ country + ", Gender=" + gender + ", lastConnection=" + lastConnection + ", createdDate=" 
-				+ createdDate + ", online=" + online + ", Active=" + active + ", conversations="+ conversations 
-				+ ", profilePicture " + profilePicture + ", pictures=" + pictures + ", "+ "likes=" + likes 
-				+ ", whoSawMe=" + whoSawMe + ", whoISaw=" + whoISaw + " socialNetworks " + socialNetworks 
-				+ " Details " + userDetails.toString() + "]";
+				+ createdDate + ", online=" + online + ", Active=" + active + ", profilePicture " + profilePicture 
+				+ ", pictures=" + pictures + ", "+ "likes=" + likes + ", whoSawMe=" + whoSawMe + ", whoISaw=" 
+				+ whoISaw + " socialNetworks " + socialNetworks + " Details " + userDetails.toString() + "]";
 	}
-	public long get_id() {
-		return _id;
+	public long getId() {
+		return id;
 	}
 
-	public void set_id(long _id) {
-		this._id = _id;
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	public String getFirstname() {
@@ -135,11 +135,11 @@ public class User {
 		this.password = password;
 	}
 
-	public Date getBirthdate() {
+	public String getBirthdate() {
 		return birthdate;
 	}
 
-	public void setBirthdate(Date birthdate) {
+	public void setBirthdate(String birthdate) {
 		this.birthdate = birthdate;
 	}
 
@@ -205,14 +205,6 @@ public class User {
 
 	public void setActive(boolean active) {
 		this.active = active;
-	}
-
-	public Map<Integer, Conversation> getConversations() {
-		return conversations;
-	}
-
-	public void setConversations(Map<Integer, Conversation> conversations) {
-		this.conversations = conversations;
 	}
 
 	public List<String> getPictures() {

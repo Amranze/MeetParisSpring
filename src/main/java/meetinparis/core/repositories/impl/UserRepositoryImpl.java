@@ -242,4 +242,9 @@ public class UserRepositoryImpl implements UserRepository {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public User CheckUser(String email, String password) {
+		return mongoTemplate.findOne(new Query().addCriteria(Criteria.where("mail").is(email).and("password").is(password)), User.class);
+	}
 }

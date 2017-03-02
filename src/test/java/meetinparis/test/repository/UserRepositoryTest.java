@@ -1,5 +1,6 @@
 package meetinparis.test.repository;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -31,6 +32,57 @@ public class UserRepositoryTest {
 	private UserRepository userRepo;
 	
 	private User user;
+
+	@Before
+	public void setUp() {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		//sdf.format(new Date());
+		
+		List<Integer> likes = new ArrayList<Integer>();
+		likes.add(1);
+		likes.add(2);
+		likes.add(3);
+		likes.add(4);
+		
+		user = new User(1L, "Amrane", "Ait Zeouay", "amraneze", "a.zeouayamran@gmail.vom", "1584654", sdf.format(new Date()),
+				 Gender.MAN, 23, "0514545", new Details(), "81 rue riquet", 75018, "Paris", "France", 2L,
+				new Date().getTime(), true, true, "profilePicture", new ArrayList<>(),likes, null, null, new SocialNetwork(), 0.0
+				);
+		
+		User user1 = new User(2L, "Simona", "Rasytinyte", "simonara", "a.zeouayamran@gmail.vom", "1584654", sdf.format(new Date()),
+				Gender.MAN, 23,  "0514545", new Details(), "81 rue riquet", 75018, "Paris", "France", 2L,
+				new Date().getTime(), true, false, "profilePicture", new ArrayList<>(), likes, null, null, new SocialNetwork(), 10.0
+				);
+		
+		User user2 = new User(3L, "Hamada", "Ait Zeouay", "amraneze", "a.zeouayamran@gmail.vom", "1584654", sdf.format(new Date()),
+				Gender.MAN, 23, "0514545", new Details(), "81 rue riquet", 75018, "Paris", "France", 2L,
+				new Date().getTime(), true, true, "profilePicture", new ArrayList<>(), null, null, null, null, 100.0
+				);
+		
+		User user3 = new User(4L, "Amine", "Bouchane", "aminebch", "a.zeouayamran@gmail.vom", "1584654", sdf.format(new Date()),
+				 Gender.MAN, 23, "0514545", new Details(), "81 rue riquet", 75018, "Paris", "France", 2L, 
+				new Date().getTime(), true, false, "profilePicture", new ArrayList<>(),null, null, null, null, 70.0
+				);
+		
+		userRepo.save(user);
+		userRepo.save(user1);
+		userRepo.save(user2);
+		userRepo.save(user3);
+	}
+	@Test
+	public void test(){
+		logger.debug("Starting the Test");
+		find();
+	}
+	
+	public void find(){
+		List<User> onlineUsers = userRepo.findOnlineUsers();
+		//List<User> likes = userRepo.findWhoLikesMe(1L);
+		for(User user : onlineUsers)
+			logger.debug(user.toString());
+	}
+	
+	/*
 	@Before
 	public void setUp() {
 		Message message = new Message(1L, "Amrane", "Simona", "Jeg elsker dig", 12121L, "", true, false, true);
@@ -78,17 +130,6 @@ public class UserRepositoryTest {
 		userRepo.save(user1);
 		userRepo.save(user2);
 		userRepo.save(user3);
-	}
-	@Test
-	public void test(){
-		logger.debug("Starting the Test");
-		find();
-	}
+	}*/
 	
-	public void find(){
-		List<User> onlineUsers = userRepo.findOnlineUsers();
-		//List<User> likes = userRepo.findWhoLikesMe(1L);
-		for(User user : onlineUsers)
-			logger.debug(user.toString());
-	}
 }

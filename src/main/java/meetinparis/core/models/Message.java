@@ -1,54 +1,59 @@
 package meetinparis.core.models;
 
 public class Message {
-	private long _id;
-	//change String with long for id
-	private String sender;
-	private String receiver;
-	private String message;
-	private long timeStamp;
-	private String senderUrl;
-	private boolean messageSent;
-	private boolean messageRead;
-	private boolean messageReceived;
+	public final static int STATUS_RECEIVED = 0;
+	public final static int STATUS_SENDING  = 1;
+	public final static int STATUS_SENT 	= 2;
+	public final static int STATUS_READ 	= 3;
+	public final static int STATUS_FAILED 	= 4;
 	
-	public Message(long _id, String sender, String receiver, String message, long timeStamp, String senderUrl,
-			boolean messageSent, boolean messageRead, boolean messageReceived) {
+    private long id;
+    private long idSender;
+    private long idReceiver;
+    private String message;
+    private long timeStamp;
+    private String senderUrl;
+    /*private boolean messageSent;
+    private boolean messageRead;
+    private boolean messageReceived;*/
+    private int status;
+    
+	public Message(long id, long idSender, long idReceiver, String message, long timeStamp, String senderUrl,
+			int status) {
 		super();
-		this._id = _id;
-		this.sender = sender;
-		this.receiver = receiver;
+		this.id = id;
+		this.idSender = idSender;
+		this.idReceiver = idReceiver;
 		this.message = message;
 		this.timeStamp = timeStamp;
 		this.senderUrl = senderUrl;
-		this.messageSent = messageSent;
-		this.messageRead = messageRead;
-		this.messageReceived = messageReceived;
+		this.status = status;
 	}
-	
+	public Message() {
+		super();
+	}
 	@Override
 	public String toString() {
-		return "Message [_id=" + _id + ", sender=" + sender + ", receiver=" + receiver + ", message=" + message
-				+ ", timeStamp=" + timeStamp + ", senderUrl=" + senderUrl + ", messageSent=" + messageSent
-				+ ", messageRead=" + messageRead + ", messageReceived=" + messageReceived +"]";
+		return "Message [id=" + id + ", idSender=" + idSender + ", idReceiver=" + idReceiver + ", message=" + message
+				+ ", timeStamp=" + timeStamp + ", senderUrl=" + senderUrl + ", status=" + status + "]";
 	}
-	public long get_id() {
-		return _id;
+	public long getId() {
+		return id;
 	}
-	public void set_id(long _id) {
-		this._id = _id;
+	public void setId(long id) {
+		this.id = id;
 	}
-	public String getSender() {
-		return sender;
+	public long getIdSender() {
+		return idSender;
 	}
-	public void setSender(String sender) {
-		this.sender = sender;
+	public void setIdSender(long idSender) {
+		this.idSender = idSender;
 	}
-	public String getReceiver() {
-		return receiver;
+	public long getIdReceiver() {
+		return idReceiver;
 	}
-	public void setReceiver(String receiver) {
-		this.receiver = receiver;
+	public void setIdReceiver(long idReceiver) {
+		this.idReceiver = idReceiver;
 	}
 	public String getMessage() {
 		return message;
@@ -68,22 +73,10 @@ public class Message {
 	public void setSenderUrl(String senderUrl) {
 		this.senderUrl = senderUrl;
 	}
-	public boolean isMessageSent() {
-		return messageSent;
+	public int getStatus() {
+		return status;
 	}
-	public void setMessageSent(boolean messageSent) {
-		this.messageSent = messageSent;
-	}
-	public boolean isMessageRead() {
-		return messageRead;
-	}
-	public void setMessageRead(boolean messageRead) {
-		this.messageRead = messageRead;
-	}
-	public boolean isMessageReceived() {
-		return messageReceived;
-	}
-	public void setMessageReceived(boolean messageReceived) {
-		this.messageReceived = messageReceived;
+	public void setStatus(int status) {
+		this.status = status;
 	}
 }
